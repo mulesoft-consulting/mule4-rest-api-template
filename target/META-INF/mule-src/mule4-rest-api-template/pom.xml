@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Parent-Pom(and Bom) from Azure Artifacts Repo -->
+	<parent>
+		<groupId>com.mulesoft</groupId>
+		<artifactId>solutions-parent-pom</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<!-- TODO: Replace this with com.{mycompany} -->
+	<groupId>com.mulesoft</groupId>
+	<!-- TODO: Replace artifact id with project name -->
+	<artifactId>mule4-rest-api-template</artifactId>
+	<!-- TODO: Update API version -->
+	<version>1.0.0</version>
+	<packaging>mule-application</packaging>
+
+	<!-- TODO: Ensure this matches with project name and description-->
+	<name>mule4-rest-api-template</name>
+	<description>REST API Template for experience, process, and System APIs</description>
+	
+	
+	<properties>
+		<!-- TODO: Update this to appropriate layer (eapi/papi/sapi) -->
+		<api.layer>${api.layer.eapi}</api.layer>
+		<!-- TODO: Ensure correct runtime version -->
+		<app.runtime>4.3.0</app.runtime>
+		
+		<maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+		<maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+		<munit.version>2.2.4</munit.version>
+		<error.handler.library.version>1.0.0-SNAPSHOT</error.handler.library.version>	
+			
+		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
+    </properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
+            <configuration>
+                    <classifier>mule-application</classifier>
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>com.mulesoft.munit.tools</groupId>
+				<artifactId>munit-maven-plugin</artifactId>
+				<version>${munit.version}</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+							<goal>coverage-report</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration> 
+					<runtimeVersion>${app.runtime}</runtimeVersion>
+					<runtimeProduct>MULE_EE</runtimeProduct>
+					<environmentVariables>
+						<encrypt.key>${encrypt.key}</encrypt.key>
+					</environmentVariables> 
+					<coverage>
+						<runCoverage>true</runCoverage>
+						<formats>
+							<format>console</format>
+							<format>html</format>
+							<format>json</format>
+						</formats>
+					</coverage>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<compilerArgs>
+						<args>-parameters</args>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven.dependency.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								
+								<artifactItem>
+									<!-- TODO: Replace with the Published error-handling artifact library details -->
+									<groupId>com.mulesoft</groupId>
+									<artifactId>error-handler-library</artifactId>
+									<version>${error.handler.library.version}</version>
+									<!-- *************************************************** -->
+									<classifier>mule-application</classifier>
+									<overWrite>true</overWrite>
+									<outputDirectory>src/main/mule/</outputDirectory>
+									<includes>**/error-*.xml</includes>
+								</artifactItem>
+								<artifactItem>
+									<!-- TODO: Replace with the Published error-handling artifact library details -->
+									<groupId>com.mulesoft</groupId>
+									<artifactId>error-handler-library</artifactId>
+									<version>${error.handler.library.version}</version>
+									<!-- *************************************************** -->
+									<classifier>mule-application</classifier>
+									<overWrite>true</overWrite>
+									<outputDirectory>src/main/resources/</outputDirectory>
+									<includes>**/*.yaml</includes>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-http-connector</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-apikit-module</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.modules</groupId>
+			<artifactId>mule-secure-configuration-property-module</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-validation-module</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-sockets-connector</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.module</groupId>
+			<artifactId>mule-java-module</artifactId>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+
+		<!-- Connectors -->
+		<dependency>
+			<groupId>${orgid}</groupId>
+			<artifactId>json-logger</artifactId>
+			<version>${json.logger.ver}</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+
+		<!-- MUNIT -->
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-runner</artifactId>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-tools</artifactId>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- TODO: Remove this dependency for rest-api-template -->
+    	<dependency>
+            <groupId>9603fc66-9985-4754-8a84-6dfcfc3b2d72</groupId>
+            <artifactId>rest-api-template-spec</artifactId>
+            <version>1.0.0</version>
+            <classifier>raml</classifier>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+		<!-- TODO: Remove this repository and replace with artifact repository where Parent-POM files are published-->
+	<repositories>
+		<repository>
+			<id>mulesoft-consulting</id>
+			<url>https://pkgs.dev.azure.com/mulesoft-consulting/_packaging/mulesoft-consulting/maven/v1</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<!-- *************************************************** -->
+    </repositories>
+
+</project>
