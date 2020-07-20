@@ -6,13 +6,12 @@
 
 ### Getting Started
 1. Project pom file has solutions-parent-pom as parent
-Eg:-
 ```
 <parent>
-		<groupId>com.mulesoft</groupId>
-		<artifactId>solutions-parent-pom</artifactId>
-		<version>0.0.1</version>
-    </parent>
+	<groupId>com.mulesoft</groupId>
+	<artifactId>solutions-parent-pom</artifactId>
+	<version>0.0.1</version>
+</parent>
 ```
 2. Project pom file has maven dependency plugin to unpack [error-hanling-library](https://github.com/mulesoft-consulting/error-handler-library) . Make sure <artifactItem> details are configured accordingly 
 ```
@@ -57,8 +56,8 @@ Eg:-
 				</executions>
 			</plugin>
 ```
-3. Make sure JSON-logger is published in Anypoint platform Org/Business Group
-4. Publish the asset in Exchange - as [REST API - RAML] - from [here](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/rest-api-template-spec)
+3. Make sure [JSON-logger](https://blogs.mulesoft.com/dev/anypoint-platform-dev/json-logging-mule-4/) is published in Anypoint platform Org/Business Group
+4. Publish the REST API spec in Exchange - from [here](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/rest-api-template-spec) you can publish the asset to Exchange as as [REST API - RAML]
 5. Remove this repository and replace with artifact repository where Parent-POM files are published
 
         <repository>
