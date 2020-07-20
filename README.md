@@ -59,7 +59,7 @@
 3. Make sure [JSON-logger](https://blogs.mulesoft.com/dev/anypoint-platform-dev/json-logging-mule-4/) is published in Anypoint platform Org/Business Group
 4. Publish the REST API spec in Exchange - from [here](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/rest-api-template-spec) you can publish the asset to Exchange as as [REST API - RAML]
 5. Remove this repository and replace with artifact repository where Parent-POM files are published
-
+```
 <repository>
     <id>mulesoft-consulting</id>
     <url>https://pkgs.dev.azure.com/mulesoft-consulting/_packaging/mulesoft-consulting/maven/v1</url>
@@ -70,6 +70,7 @@
 	<enabled>true</enabled>
     </snapshots>
 </repository>
+```
 6. Add or edit the [settings.xml](https://github.com/mulesoft-consulting/mule4-rest-api-template/blob/master/settings.xml) file in ${user.home}/.m2
 7. Execute command: **mvn clean install** in the project folder (command prompt), and all references will be in place on build success
  
