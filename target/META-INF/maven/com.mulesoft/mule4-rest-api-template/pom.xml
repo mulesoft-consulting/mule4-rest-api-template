@@ -188,7 +188,7 @@
     	<dependency>
             <groupId>9603fc66-9985-4754-8a84-6dfcfc3b2d72</groupId>
             <artifactId>rest-api-template-spec</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <classifier>raml</classifier>
             <type>zip</type>
         </dependency>
