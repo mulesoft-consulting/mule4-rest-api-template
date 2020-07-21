@@ -1,9 +1,9 @@
-> API template requires this parent-pom files to be published in chosen artifact repository
+> API template requires this parent-pom files to be published in chosen artifact repository (Nexus, artefactory, azure repo etc)
 # BOM file
 ## Getting Started
 ##### Update bom -> pom.xml
 1. Update the `<orgid>` with Anypoint Platform Org Id
-2. Publish JSON logger to Anypoint Platform Exchange and update version <json.logger.ver>
+2. Publish JSON logger to Anypoint Platform Exchange(under the Org from step 1) and update version <json.logger.ver>
 3. Replace the below repository with appropriate artefactory repo where BOM will be published 
 ```
         <repository>
@@ -17,12 +17,20 @@
             </snapshots>
         </repository>
 ```
-4. Publish bom -> pom.xml file to chosen artifact repository
+4. Publish bom -> pom.xml file to chosen artifact repository (Nexus, artefactory, azure repo etc)
 
 
 
 # Parent-POM file
 ## Getting Started
 ##### Update parent-pom -> pom.xml
-1. Update `<parent>`section with published bom file
-2. Publish parent-pom -> pom.xml file to chosen artifact repository
+1. Parent pom uses [bom -> pom.xml](https://github.com/mulesoft-consulting/mule4-rest-api-template/blob/master/parent-pom-files/bom/pom.xml) as parent
+```
+<parent>
+        <groupId>com.mulesoft</groupId>
+        <artifactId>solutions-bom</artifactId>
+        <version>0.0.1</version>
+</parent>
+```
+2. Update `<parent>`section with published bom file
+3. Publish parent-pom -> pom.xml file to chosen artifact repository (Nexus, artefactory, azure repo etc)
