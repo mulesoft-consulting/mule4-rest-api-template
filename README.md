@@ -1,11 +1,11 @@
 # API Template
 
 ### Prerequisites
-1. Publish [bom and parent-pom files](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/parent-pom-files) to chosen artifact repo 
-2. Publish [error-handler-library](https://github.com/mulesoft-consulting/error-handler-library) to chosen artifact repo
+1. Publish [bom and parent-pom files](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/parent-pom-files) to chosen artifact repo (Nexus, Artefactory, Azure etc)
+2. Publish [error-handler-library](https://github.com/mulesoft-consulting/error-handler-library) to chosen artifact repo (Nexus, Artefactory, Azure etc)
 
 ### Getting Started
-1. Project pom file has solutions-parent-pom as parent
+1. Project pom file has [solutions-parent-pom](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/parent-pom-files/parent-pom) as parent
 ```
 <parent>
 	<groupId>com.mulesoft</groupId>
@@ -57,7 +57,18 @@
 </plugin>
 ```
 3. Make sure [JSON-logger](https://blogs.mulesoft.com/dev/anypoint-platform-dev/json-logging-mule-4/) is published in Anypoint platform Org/Business Group
-4. Publish the REST API spec in Exchange - from [here](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/rest-api-template-spec) you can publish the asset to Exchange as as [REST API - RAML]
+4. Publish the REST API spec in Exchange - from [here](https://github.com/mulesoft-consulting/mule4-rest-api-template/tree/master/rest-api-template-spec) you can publish the asset to Exchange as as [REST API - RAML] and update this dependency in pom.xml with the correct groupId of published asset.
+
+```
+<dependency>
+    <groupId>9603fc66-9985-4754-8a84-6dfcfc3b2d72</groupId>
+    <artifactId>rest-api-template-spec</artifactId>
+    <version>1.0.1</version>
+    <classifier>raml</classifier>
+    <type>zip</type>
+</dependency>
+```
+	
 5. Remove this repository and replace with artifact repository where Parent-POM files are published
 ```
 <repository>
@@ -72,7 +83,7 @@
 </repository>
 ```
 6. Add or edit the [settings.xml](https://github.com/mulesoft-consulting/mule4-rest-api-template/blob/master/settings.xml) file in ${user.home}/.m2
-7. Execute command: **mvn clean install** in the project folder (command prompt), and all references will be in place on build success
+7. Execute command: **mvn clean install** in the project folder (command prompt), and all references will be in place on build success.
  
 ### Test
 - Please make sure you have **API Manager Environment credentials** configured in Anypoint studio. This is required for _API autodiscovery_ configuration.
