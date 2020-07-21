@@ -2,7 +2,7 @@
 # BOM file
 ## Getting Started
 ##### Update bom -> pom.xml
-1. Update the <orgid> with Anypoint Platform Org Id
+1. Update the `<orgid>` with Anypoint Platform Org Id
 2. Publish JSON logger to Anypoint Platform Exchange and update version <json.logger.ver>
 3. Replace the below repository with appropriate artefactory repo where BOM will be published 
 ```
@@ -24,5 +24,5 @@
 # Parent-POM file
 ## Getting Started
 ##### Update parent-pom -> pom.xml
-1. Update <parent> section with published bom file
+1. Update `<parent>`section with published bom file
 2. Publish parent-pom -> pom.xml file to chosen artifact repository
