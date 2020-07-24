@@ -1,4 +1,4 @@
-> API template requires this parent-pom files to be published in chosen artifact repository (Nexus, artefactory, azure repo etc)
+> API template requires this parent-pom files to be published in chosen artifact repository (Nexus, artefactory, [azure repo](https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/maven?view=azure-devops) etc)
 # BOM file
 ## Getting Started
 ##### Update bom -> pom.xml
@@ -18,6 +18,7 @@
         </repository>
 ```
 4. Publish bom -> pom.xml file to chosen artifact repository (Nexus, artefactory, azure repo etc)
+> This template uses [Azure repo as example](https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/maven?view=azure-devops). 
 
 
 
@@ -34,3 +35,4 @@
 ```
 2. Update `<parent>`section with published bom file
 3. Publish parent-pom -> pom.xml file to chosen artifact repository (Nexus, artefactory, azure repo etc)
+> This template uses [Azure repo as example](https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/maven?view=azure-devops).
