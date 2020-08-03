@@ -1,4 +1,0 @@
-app:
-  name:         "mule4-rest-api-template"
-  version:      "1.0.0"
-  layer:        "EXP"

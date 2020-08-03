@@ -59,6 +59,7 @@ errors:
     jms:
       DEFAULT: "{\"errorMessage\": \"An error has occured\",\"httpStatus\" : \"500\"}"
     technical:
+      CORRELATION_ID_REQUIRED: "{\"errorMessage\": \"X-Correlation-ID header is compulsory\",\"httpStatus\" : \"500\"}"
       DEFAULT: "{\"errorMessage\": \"An error has occured\",\"httpStatus\" : \"500\"}"
     file:
       DEFAULT: "{\"errorMessage\": \"An error has occured\",\"httpStatus\" : \"500\"}"

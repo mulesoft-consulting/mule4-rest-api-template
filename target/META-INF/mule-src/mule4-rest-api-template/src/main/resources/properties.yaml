@@ -1,4 +1,0 @@
-app:
-  name:         "${project.artifactId}"
-  version:      "${project.version}"
-  layer:        "EXP"
